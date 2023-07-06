@@ -32,17 +32,8 @@ String time_to_string(int hour, int min, bool am_pm) {
   return temp_string;
 }
 
-void statusUpdate() {
-  Serial.print("Keypad pressed: ");
-  Serial.println(input_character);
-  Serial.print("Time string: ");
-//  Serial.println(timeString);
-  Serial.print("Keypad Buffer: ");
-  Serial.println(keypad_buffer);  
-  Serial.print("Minutes: ");
-//  Serial.println(minutes);
-  Serial.print("Hours: ");
-//  Serial.println(hours);  
+void statusUpdate() {  
+	// Fill in with variables being monitored
 }
 
 String am_or_pm(bool am_pm)  {
