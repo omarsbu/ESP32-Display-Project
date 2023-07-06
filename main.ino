@@ -2,11 +2,13 @@
 #include "misc_functions.h"
 #include "keypad_handlers.h"
 
+// Timer variables
 bool timer_interrupt = false;
 hw_timer_t* timer = NULL;
 portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
 portMUX_TYPE portMUX = portMUX_INITIALIZER_UNLOCKED;
 
+// Timer ISR
 void IRAM_ATTR timerISR() {
 
     timer_interrupt = true;  // Set timer interrupt flag
@@ -29,11 +31,13 @@ void IRAM_ATTR timerISR() {
     alarm_interrupt = true; 
 }
 
+// Reset button ISR
 void IRAM_ATTR resetISR() {
   if (main_menu == false & digitalRead(23) == LOW);
     reset_interrupt = true;  // Set reset flag to read numbers from keypad    
 }
 
+// Doorbell ISR
 void IRAM_ATTR doorISR() {;}
 
 // setup
@@ -110,9 +114,6 @@ void loop () {
     decodeKeypad(input_character);  
 
     // Check for alarm
-//  Serial.println("Alarm Variables: "); Serial.println(alarm_hours);Serial.println(alarm_minutes);Serial.println(alarm_am_pm);
-//  Serial.println("Clock Variables: "); Serial.println(clock_hours);Serial.println(clock_minutes);Serial.println(clock_am_pm);
-
   if (alarm_interrupt == true) 
   {
     display_bitmap(u8g2_display, alarm_finished_bitmap);
